@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>吉祥坊介绍页 · 快速识别网站用途</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉卡片 —— 柔和 intro */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-tag {
+            background: #eef2f7;
+            color: #2c3e50;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border: 1px solid #dce2ea;
+        }
+
+        .hero-card h1 {
+            font-size: 2.4rem;
+            font-weight: 520;
+            letter-spacing: -0.2px;
+            color: #0b1a2b;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-card .subhead {
+            font-size: 1.1rem;
+            color: #3e4f62;
+            max-width: 80%;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-card p {
+            color: #2f4056;
+            font-size: 1rem;
+        }
+
+        /* 卡片网格 —— 用途卡片 + 人群卡片 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 680px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .hero-card h1 {
+                font-size: 1.9rem;
+            }
+            .hero-card .subhead {
+                max-width: 100%;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #e6ebf1;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+            background: #f0f4fa;
+            width: 3rem;
+            height: 3rem;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 16px;
+            color: #1d3a5e;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+            margin-bottom: 0.5rem;
+            color: #0b1f33;
+        }
+
+        .card p, .card li {
+            font-size: 0.96rem;
+            color: #2f405a;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .card ul li {
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+
+        .card ul li::before {
+            content: "·";
+            color: #4b6f8e;
+            font-weight: 700;
+            margin-right: 0.3rem;
+        }
+
+        /* 自然链接段落卡片 */
+        .link-paragraph-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem;
+            border: 1px solid #e3e9ef;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+
+        .link-paragraph-card h2 {
+            font-size: 1.6rem;
+            font-weight: 490;
+            color: #0b1e30;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .link-paragraph-card p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .link-paragraph-card a {
+            color: #1a4f7a;
+            text-decoration: none;
+            border-bottom: 1px solid #b6ccdf;
+            font-weight: 500;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .link-paragraph-card a:hover {
+            color: #0a3050;
+            border-bottom-color: #1a4f7a;
+        }
+
+        .link-paragraph-card .footnote {
+            background: #f5f8fc;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            color: #2f4156;
+            border-left: 3px solid #c2d3e6;
+            margin-top: 1.2rem;
+        }
+
+        /* FAQ 摘要卡片 */
+        .faq-mini-card {
+            background: #fafcff;
+            border-radius: 20px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.8rem;
+        }
+
+        .faq-mini-card h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #14273e;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-question {
+            font-weight: 530;
+            color: #1b2c40;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-answer {
+            color: #3d4f66;
+            font-size: 0.95rem;
+            padding-left: 0.8rem;
+            border-left: 2px solid #d0dbe8;
+        }
+
+        .faq-answer a {
+            color: #1a4f7a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #b7cbdf;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0 0.5rem;
+            font-size: 0.85rem;
+            color: #6f829b;
+            border-top: 1px solid #dfe5ed;
+            margin-top: 1.5rem;
+        }
+
+        .badge-light {
+            background: #eef2f7;
+            display: inline-block;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #2d4b6a;
+            border: 1px solid #dae1ea;
+            margin-left: 0.35rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- 主视觉：快速识别用途 -->
+    <div class="hero-card">
+        <span class="hero-tag">📌 站点识别卡</span>
+        <h1>快速了解「吉祥坊」</h1>
+        <div class="subhead">一个整理信息、提供综合服务索引的网站，功能定位一目了然。</div>
+        <p>当你第一次来到 <strong>index-wellbet.com</strong>，最想知道的就是“这个网站能做什么”。下面用几张卡片帮你快速建立起认知框架——没有模糊描述，只有实在的说明。</p>
+    </div>
+
+    <!-- 2列卡片：用途卡片 + 适合人群 -->
+    <div class="grid-2col">
+        <!-- 用途卡片 -->
+        <div class="card">
+            <div class="card-icon">🧩</div>
+            <h3>核心用途</h3>
+            <ul>
+                <li>信息聚合与分类导航</li>
+                <li>常用入口与功能整理</li>
+                <li>平台背景及基本介绍</li>
+                <li>用户指引与常见问题</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">整体结构清晰，适合想快速了解服务框架的人。所有内容都围绕透明、直接的信息组织方式展开。</p>
+        </div>
+
+        <!-- 适合人群卡片 -->
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>适合人群</h3>
+            <ul>
+                <li>刚接触该平台、需要快速浏览的用户</li>
+                <li>想确认网站具体提供哪些服务的人</li>
+                <li>偏好信息卡片式阅读而非长文的访客</li>
+                <li>需要一份简洁参考说明的普通浏览者</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">无论你是第一次来，还是想再次确认细节，这里都能给你一个清爽的起点。</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落：把吉祥坊嵌入句子 -->
+    <div class="link-paragraph-card">
+        <h2>从网站首页开始认识</h2>
+        <p>网站 <a href="https://index-wellbet.com">吉祥坊</a> 首页采用了平铺式的信息卡片结构，访问后你能立刻看到主要功能模块和简介。页面没有复杂的跳转迷宫，而是把最常见的问题和需求放在了显眼位置。</p>
+        <p>如果你对某个具体功能感兴趣，可以直接在站内找到对应的说明段落或指引列表。整个体验类似翻阅一本内容紧凑的手册，不需要额外搜索或猜测。这也正是该站设计者希望达到的效率：让你用最少的时间搞明白“这里有什么”。</p>
+        <div class="footnote">
+            💡 提示：首页标题区、分类卡片和常见问题摘要，是快速理解网站的三块基石。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要卡片 (差异化章节) -->
+    <div class="faq-mini-card">
+        <h2>❓ 常见疑问摘要</h2>
+        <div class="faq-item">
+            <span class="faq-question">这个网站是做什么的？</span>
+            <div class="faq-answer"><a href="https://index-wellbet.com">吉祥坊</a> 是一个信息梳理类的站点，它把常用的服务入口、介绍和说明整理在一起，方便你一站式概览。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">信息是否及时？</span>
+            <div class="faq-answer">站内内容会跟随平台调整而更新，但建议以官方最新公告或直接联系客服为准。网站本身是作为辅助参考存在。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">我该从哪里开始浏览？</span>
+            <div class="faq-answer">直接从首页的卡片区域开始即可，每个卡片都对应一类信息。你也可以用页面顶部的导航区域（如果有）快速跳转。</div>
+        </div>
+    </div>
+
+    <!-- 额外干净段落：提示和边界 -->
+    <div style="background: #ffffff; border-radius: 24px; padding: 1.5rem 1.8rem; border: 1px solid #e6ecf3; box-shadow: 0 2px 8px rgba(0,0,0,0.02); margin-bottom: 1.8rem;">
+        <p style="font-size: 0.98rem; color: #2b4058;">📋 <strong>提醒：</strong> 本介绍页旨在帮你快速识别网站用途，不含任何诱导或夸张描述。所有信息以网站实际内容为准，请理性浏览并自行判断。</p>
+        <p style="font-size: 0.98rem; color: #2b4058; margin-top: 0.5rem;">🔗 直接访问 <a href="https://index-wellbet.com" style="color: #1a4f7a; text-decoration: underline; text-underline-offset: 2px;">吉祥坊</a> 首页，查看完整卡片式信息。</p>
+    </div>
+
+    <footer>
+        <span>信息介绍页 · 内容方向：用户快速识别用途 · 持续更新中</span>
+    </footer>
+
+</div>
+</body>
+</html>
